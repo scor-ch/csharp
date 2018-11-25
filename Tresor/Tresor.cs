@@ -21,10 +21,11 @@ namespace Tresor
         public Tresor()
         {
             InitializeComponent();
-        }
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
+            ToolTip helpToolTip = new ToolTip();
+            helpToolTip.SetToolTip(this.hilfe, "Aktueller Code anzeigen");
+            oeffnenSchliessen(true);
+            //schliessfach.Enabled = true;
+            //schliessfach.BackColor = Color.DarkGreen;
         }
 
         private void button_Click(object sender, EventArgs e)
@@ -38,11 +39,6 @@ namespace Tresor
             resetDisplayOk = false;
         }
 
-        private void c_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void setOrC_Click(object sender, EventArgs e)
         {
             Button b = (Button)sender;
@@ -52,6 +48,7 @@ namespace Tresor
                 display.Text = "Code Saved";
                 this.codeSet = true;
                 this.resetDisplayOk = true;
+                oeffnenSchliessen(false);
             }
             else if (display.Text == "0000")
             {
@@ -71,9 +68,14 @@ namespace Tresor
             }
         }
 
-        private void schliessfach_Paint(object sender, PaintEventArgs e)
+        private void oeffnenSchliessen(bool bewegen)
         {
-                schliessfach.Enabled = false;
+            schliessfach.Enabled = bewegen;
+            if (bewegen)
+            {
+                schliessfach.BackColor = Color.DarkGreen;
+            }
+            else
                 schliessfach.BackColor = Color.DarkRed;
         }
 
@@ -86,6 +88,7 @@ namespace Tresor
                 this.codeSet = false;
                 this.resetDisplayOk = true;
                 this.tresorOpen = true;
+                oeffnenSchliessen(true);
             }
             else
             {
@@ -94,18 +97,6 @@ namespace Tresor
                 this.resetDisplayOk = true;
             }
         }
-        private void griff_Click(object sender, EventArgs e)
-        {
-            if (this.tresorOpen == true)
-            {
-                griff.Visible = false;
-                //griff.VisibleChanged += new EventHandler();
-                schliessfach.Enabled = true;
-                schliessfach.BackColor = Color.Green;
-
-            }
-        }
-
         private void hilfe_Click(object sender, EventArgs e)
         {
             if (this.codeSet == true)

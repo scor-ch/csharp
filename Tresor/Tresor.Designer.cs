@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Tresor));
             this.zahlenBox = new System.Windows.Forms.GroupBox();
+            this.hilfe = new System.Windows.Forms.Button();
             this.open = new System.Windows.Forms.Button();
             this.set = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
@@ -46,7 +48,7 @@
             this.display = new System.Windows.Forms.TextBox();
             this.schliessfach = new System.Windows.Forms.Panel();
             this.griff = new System.Windows.Forms.PictureBox();
-            this.hilfe = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.zahlenBox.SuspendLayout();
             this.schliessfach.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.griff)).BeginInit();
@@ -77,7 +79,16 @@
             this.zahlenBox.TabIndex = 0;
             this.zahlenBox.TabStop = false;
             this.zahlenBox.Text = "Tresor c2018+";
-            this.zahlenBox.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // hilfe
+            // 
+            this.hilfe.Location = new System.Drawing.Point(6, 163);
+            this.hilfe.Name = "hilfe";
+            this.hilfe.Size = new System.Drawing.Size(40, 40);
+            this.hilfe.TabIndex = 25;
+            this.hilfe.Text = "?";
+            this.hilfe.UseVisualStyleBackColor = true;
+            this.hilfe.Click += new System.EventHandler(this.hilfe_Click);
             // 
             // open
             // 
@@ -241,28 +252,6 @@
             this.schliessfach.Name = "schliessfach";
             this.schliessfach.Size = new System.Drawing.Size(264, 294);
             this.schliessfach.TabIndex = 2;
-            this.schliessfach.Paint += new System.Windows.Forms.PaintEventHandler(this.schliessfach_Paint);
-            // 
-            // griff
-            // 
-            this.griff.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.griff.Image = ((System.Drawing.Image)(resources.GetObject("griff.Image")));
-            this.griff.Location = new System.Drawing.Point(0, -1);
-            this.griff.Name = "griff";
-            this.griff.Size = new System.Drawing.Size(61, 255);
-            this.griff.TabIndex = 0;
-            this.griff.TabStop = false;
-            this.griff.Click += new System.EventHandler(this.griff_Click);
-            // 
-            // hilfe
-            // 
-            this.hilfe.Location = new System.Drawing.Point(6, 163);
-            this.hilfe.Name = "hilfe";
-            this.hilfe.Size = new System.Drawing.Size(40, 40);
-            this.hilfe.TabIndex = 25;
-            this.hilfe.Text = "?";
-            this.hilfe.UseVisualStyleBackColor = true;
-            this.hilfe.Click += new System.EventHandler(this.hilfe_Click);
             // 
             // Tresor
             // 
@@ -304,5 +293,6 @@
         private System.Windows.Forms.Button set;
         private System.Windows.Forms.PictureBox griff;
         private System.Windows.Forms.Button hilfe;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
