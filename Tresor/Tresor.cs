@@ -17,15 +17,13 @@ namespace Tresor
         int eingegebenerCode;
         bool codeSet = false;
         bool resetDisplayOk = true;
-        bool tresorOpen = false;
         public Tresor()
         {
             InitializeComponent();
             ToolTip helpToolTip = new ToolTip();
             helpToolTip.SetToolTip(this.hilfe, "Aktueller Code anzeigen");
+            helpToolTip.InitialDelay = 400;
             oeffnenSchliessen(true);
-            //schliessfach.Enabled = true;
-            //schliessfach.BackColor = Color.DarkGreen;
         }
 
         private void button_Click(object sender, EventArgs e)
@@ -87,7 +85,6 @@ namespace Tresor
                 display.Text = "Code Korrekt";
                 this.codeSet = false;
                 this.resetDisplayOk = true;
-                this.tresorOpen = true;
                 oeffnenSchliessen(true);
             }
             else

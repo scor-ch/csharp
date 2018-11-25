@@ -253,6 +253,14 @@
             this.schliessfach.Size = new System.Drawing.Size(264, 294);
             this.schliessfach.TabIndex = 2;
             // 
+            // griff
+            // 
+            this.griff.Location = new System.Drawing.Point(0, 0);
+            this.griff.Name = "griff";
+            this.griff.Size = new System.Drawing.Size(100, 50);
+            this.griff.TabIndex = 0;
+            this.griff.TabStop = false;
+            // 
             // Tresor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -261,6 +269,7 @@
             this.Controls.Add(this.schliessfach);
             this.Controls.Add(this.display);
             this.Controls.Add(this.zahlenBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Tresor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

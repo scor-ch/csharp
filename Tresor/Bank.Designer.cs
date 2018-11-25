@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Bank));
             this.open = new System.Windows.Forms.Button();
             this.verlassen = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -59,6 +60,7 @@
             this.ClientSize = new System.Drawing.Size(258, 44);
             this.Controls.Add(this.verlassen);
             this.Controls.Add(this.open);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Bank";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Bank";
