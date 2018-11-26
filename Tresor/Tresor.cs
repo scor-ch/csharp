@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Media;
 using System.Windows.Forms;
 
 namespace Tresor
@@ -13,61 +8,92 @@ namespace Tresor
     public partial class Tresor : Form
 
     {
+        // Variable für den Code der mit SET gesetzt wurde und zur Öffnung der Tresortüre benötigt wird
         int gesetzterCode;
+        // Variable für den vom Benutzer "versuchten" Code um die Türe zu öffnen
         int eingegebenerCode;
-        bool codeSet = false;
+        // Variable die festhält, ob ein Code gesetzt wurde und damit aktiv ist
+        bool codeIsSet = false;
+        // Variable die festhält, ob das Display zurückgesetzt werden darf oder nicht
         bool resetDisplayOk = true;
+        
+
         public Tresor()
         {
             InitializeComponent();
+            // Tooltip zum "?" Knopf anzeigen
             ToolTip helpToolTip = new ToolTip();
             helpToolTip.SetToolTip(this.hilfe, "Aktueller Code anzeigen");
             helpToolTip.InitialDelay = 400;
+            // Neuer Tresor mit offener Tür starten
             oeffnenSchliessen(true);
         }
 
         private void button_Click(object sender, EventArgs e)
         {
+            SystemSounds.Beep.Play();
+            // Sound-Datei im .wav Format abspielen wenn ein Knopf gedrückt wird
+            //SystemSound btn_sound = new SystemSound(@"c:\Windows\media\Windows-Geblocktes Popup.wav");
+            //btn_sound.Play();
+
+            // Display vorgängig zurücksetzen wenn resetDisplayOk 'true' ist
             if (resetDisplayOk == true)
             {
                 display.Clear();
             }
+            // Knopf-Text (Zahl) erfassen und für die Anzeige im Display verwenden
             Button b = (Button)sender;
             display.Text = display.Text + b.Text;
+            // Display nicht mehr zurücksetzen damit Zahlen aneinandergereiht werden können
             resetDisplayOk = false;
         }
 
+        // Event für die Knöpfe "SET" und "C"
         private void setOrC_Click(object sender, EventArgs e)
         {
-            Button b = (Button)sender;
-            if (b.Text == "SET" && display.Text != "0000" && this.codeSet == false)
+            try
             {
-                gesetzterCode = Convert.ToInt32(display.Text);
-                display.Text = "Code Saved";
-                this.codeSet = true;
-                this.resetDisplayOk = true;
-                oeffnenSchliessen(false);
+                Button b = (Button)sender;
+                // Code nur setzen, wenn der Wert grösser als 0 ist und noch kein andere Code gesetzt wurde
+                if (b.Text == "SET" && Convert.ToInt32(display.Text) >= 1 && codeIsSet == false)
+                {
+                    gesetzterCode = Convert.ToInt32(display.Text);
+                    display.Text = "Code gesetzt";
+                    codeIsSet = true;
+                    resetDisplayOk = true;
+                    // Tresortüre schliessen (rot)
+                    oeffnenSchliessen(false);
+                }
+                // Nachricht ausgeben, wenn ein Code mit "0/00/000" gesetzt werden soll
+                else if (b.Text != "C" && Convert.ToInt32(display.Text) <= 0)
+                {
+                    display.Text = "Ungültig";
+                    resetDisplayOk = true;
+                }
+                else if (b.Text == "SET" && codeIsSet == true)
+                {
+                    display.Text = "Alter Code aktiv";
+                    resetDisplayOk = true;
+                }
+                else if (b.Text == "C")
+                {
+                    // Eingegebene Zahlen zurücksetzen
+                    eingegebenerCode = default(int);
+                    // Display auf 0000 zurücksetzen
+                    display.Clear();
+                    display.Text = "0000";
+                    resetDisplayOk = true;
+                }
             }
-            else if (display.Text == "0000")
+            // Versucht einen string zu "SETTEN" abfangen
+            catch (FormatException)
             {
-                display.Text = "Invalid";
-                this.resetDisplayOk = true;
-            }
-            else if (this.codeSet == true && b.Text == "SET")
-            {
-                display.Text = "Alter Code aktiv";
-                this.resetDisplayOk = true;
-            }
-            else if (b.Text == "C")
-            {
-                this.eingegebenerCode = default(int);
-                display.Text = "0000";
-                this.resetDisplayOk = true;
+                display.Text = "Nicht erlaubt";
             }
         }
-
         private void oeffnenSchliessen(bool bewegen)
         {
+            // Panel aktivieren / deaktivieren
             schliessfach.Enabled = bewegen;
             if (bewegen)
             {
@@ -79,31 +105,48 @@ namespace Tresor
 
         private void open_Click(object sender, EventArgs e)
         {
-            this.eingegebenerCode = Convert.ToInt32(display.Text);
-            if (this.codeSet = true && eingegebenerCode == gesetzterCode)
+            // Exception Handling für das Abfangen falscher Manipulationen
+            try
             {
-                display.Text = "Code Korrekt";
-                this.codeSet = false;
-                this.resetDisplayOk = true;
-                oeffnenSchliessen(true);
+                this.eingegebenerCode = Convert.ToInt32(display.Text);
+
+                if (this.codeIsSet = true && eingegebenerCode == gesetzterCode)
+                {
+                    display.Text = "Code Korrekt";
+                    this.codeIsSet = false;
+                    this.resetDisplayOk = true;
+                    oeffnenSchliessen(true);
+                }
+                else
+                {
+                    display.Text = "Code Inkorrekt";
+                    this.codeIsSet = true;
+                    this.resetDisplayOk = true;
+                }
             }
-            else
+            // Benutzerfreundliche Meldung bei falscher Eingabe
+            catch (FormatException)
             {
-                display.Text = "Code Inkorrekt";
-                this.codeSet = true;
-                this.resetDisplayOk = true;
+                display.Text = "Falsches Format";
+            }
+            // Generelle benutzerfreundliche Ausgabe anderer Exceptions als Popup
+            catch (Exception exception)
+            {
+                MessageBox.Show(display.Text = exception.GetType() + ": " + exception.Message);
             }
         }
         private void hilfe_Click(object sender, EventArgs e)
         {
-            if (this.codeSet == true)
+            if (this.codeIsSet == true)
             {
-                display.Text = Convert.ToString("Code: " + gesetzterCode);
+                // Wenn ein Code gesetzt wurde, diesen anzeigen
+                display.Text = Convert.ToString("Code ist: " + gesetzterCode);
                 this.resetDisplayOk = true;
             }
             else
-                Console.WriteLine("Kein Code");
-            this.resetDisplayOk = true;
+                // Ausgeben wenn noch kein Code gesetzt wurde
+                display.Text = "Kein Code";
+                this.resetDisplayOk = true;
         }
     }
 }

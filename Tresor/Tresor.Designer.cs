@@ -47,11 +47,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.display = new System.Windows.Forms.TextBox();
             this.schliessfach = new System.Windows.Forms.Panel();
-            this.griff = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.zahlenBox.SuspendLayout();
-            this.schliessfach.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.griff)).BeginInit();
             this.SuspendLayout();
             // 
             // zahlenBox
@@ -72,7 +69,7 @@
             this.zahlenBox.Controls.Add(this.button2);
             this.zahlenBox.Controls.Add(this.button1);
             this.zahlenBox.Font = new System.Drawing.Font("Consolas", 12F);
-            this.zahlenBox.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.zahlenBox.ForeColor = System.Drawing.SystemColors.Desktop;
             this.zahlenBox.Location = new System.Drawing.Point(281, 13);
             this.zahlenBox.Name = "zahlenBox";
             this.zahlenBox.Size = new System.Drawing.Size(150, 259);
@@ -235,11 +232,11 @@
             // 
             // display
             // 
-            this.display.Font = new System.Drawing.Font("Consolas", 14F);
+            this.display.Font = new System.Drawing.Font("Consolas", 12F);
             this.display.Location = new System.Drawing.Point(281, 278);
             this.display.Name = "display";
             this.display.ReadOnly = true;
-            this.display.Size = new System.Drawing.Size(150, 29);
+            this.display.Size = new System.Drawing.Size(150, 26);
             this.display.TabIndex = 1;
             this.display.Text = "0000";
             this.display.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -247,25 +244,17 @@
             // schliessfach
             // 
             this.schliessfach.AllowDrop = true;
-            this.schliessfach.Controls.Add(this.griff);
             this.schliessfach.Location = new System.Drawing.Point(11, 13);
             this.schliessfach.Name = "schliessfach";
-            this.schliessfach.Size = new System.Drawing.Size(264, 294);
+            this.schliessfach.Size = new System.Drawing.Size(264, 290);
             this.schliessfach.TabIndex = 2;
-            // 
-            // griff
-            // 
-            this.griff.Location = new System.Drawing.Point(0, 0);
-            this.griff.Name = "griff";
-            this.griff.Size = new System.Drawing.Size(100, 50);
-            this.griff.TabIndex = 0;
-            this.griff.TabStop = false;
             // 
             // Tresor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(437, 315);
+            this.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.ClientSize = new System.Drawing.Size(438, 310);
             this.Controls.Add(this.schliessfach);
             this.Controls.Add(this.display);
             this.Controls.Add(this.zahlenBox);
@@ -275,8 +264,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tresor";
             this.zahlenBox.ResumeLayout(false);
-            this.schliessfach.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.griff)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -300,7 +287,6 @@
         private System.Windows.Forms.Panel schliessfach;
         private System.Windows.Forms.Button open;
         private System.Windows.Forms.Button set;
-        private System.Windows.Forms.PictureBox griff;
         private System.Windows.Forms.Button hilfe;
         private System.Windows.Forms.ToolTip toolTip1;
     }
