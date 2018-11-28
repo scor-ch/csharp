@@ -3,6 +3,8 @@ using System.Drawing;
 using System.Media;
 using System.Windows.Forms;
 
+//Todo: SystemSounds.Beep.Play();
+
 namespace Tresor
 {
     public partial class Tresor : Form
@@ -16,7 +18,8 @@ namespace Tresor
         bool codeIsSet = false;
         // Variable die festhält, ob das Display zurückgesetzt werden darf oder nicht
         bool resetDisplayOk = true;
-        
+        // Zähler Versuche
+        int counter = 0;
 
         public Tresor()
         {
@@ -31,11 +34,6 @@ namespace Tresor
 
         private void button_Click(object sender, EventArgs e)
         {
-            SystemSounds.Beep.Play();
-            // Sound-Datei im .wav Format abspielen wenn ein Knopf gedrückt wird
-            //SystemSound btn_sound = new SystemSound(@"c:\Windows\media\Windows-Geblocktes Popup.wav");
-            //btn_sound.Play();
-
             // Display vorgängig zurücksetzen wenn resetDisplayOk 'true' ist
             if (resetDisplayOk == true)
             {
@@ -109,19 +107,37 @@ namespace Tresor
             try
             {
                 this.eingegebenerCode = Convert.ToInt32(display.Text);
+                {
+                    if (this.codeIsSet = true && eingegebenerCode == gesetzterCode)
+                    {
+                        display.Text = "Code Korrekt";
+                        this.codeIsSet = false;
+                        this.resetDisplayOk = true;
+                        oeffnenSchliessen(true);
+                        counter = default(int);
+                    }
+                    else
+                    {
+                        if (counter > 1)
+                        {
+                            MessageBox.Show("Zu viele Versuche. Der Tresor wird geschlossen", "ALARM", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            int i = 10;
+                            do
+                                // TODO:
+                            {
+                                display.Clear();
+                                display.Text = display.Text  + "ALARM";
+                                System.Threading.Thread.Sleep(100);
+                                i--;
+                            } while (i >= 0);
 
-                if (this.codeIsSet = true && eingegebenerCode == gesetzterCode)
-                {
-                    display.Text = "Code Korrekt";
-                    this.codeIsSet = false;
-                    this.resetDisplayOk = true;
-                    oeffnenSchliessen(true);
-                }
-                else
-                {
-                    display.Text = "Code Inkorrekt";
-                    this.codeIsSet = true;
-                    this.resetDisplayOk = true;
+                            Application.Exit();
+                        }
+                        display.Text = "Code Inkorrekt";
+                        this.codeIsSet = true;
+                        this.resetDisplayOk = true;
+                        counter++;
+                    }
                 }
             }
             // Benutzerfreundliche Meldung bei falscher Eingabe
