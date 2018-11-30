@@ -10,6 +10,7 @@ namespace Tresor
 {
     public partial class Tresor : Form
     {
+        SoundPlayer player = new SoundPlayer();
         // Variable für den Code der mit SET gesetzt wurde und zur Öffnung der Tresortüre benötigt wird
         int gesetzterCode;
         // Variable für den vom Benutzer "versuchten" Code um die Türe zu öffnen
@@ -22,9 +23,17 @@ namespace Tresor
         int fehlversuche = 0;
         // Flag um die autom. Türöffnung zu aktivieren/deaktivieren
         bool auto;
+        // Flag um Soundeffekte zu aktivieren/deaktivieren
+        bool soundOn;
         // Methode um Instanz neu laden nachdem die Türe (autom.) geöffnet wurde
         private void resetForm()
         {
+            // Sound bei erfolgreicher Öffnung und aktivierten Soundeffekten
+            if (soundOn)
+            {
+                player.SoundLocation = @"C:\\Windows\\Media\\tada.wav";
+                player.Play();
+            }
             display.Text = "Code Korrekt";
             codeIsSet = false;
             resetDisplayOk = true;
@@ -36,16 +45,19 @@ namespace Tresor
             InitializeComponent();
             // Tooltip zum "?" Knopf anzeigen
             ToolTip helpToolTip = new ToolTip();
-            helpToolTip.SetToolTip(this.hilfe, "Aktueller Code anzeigen");
+            helpToolTip.SetToolTip(hilfe, "Aktueller Code anzeigen");
             helpToolTip.InitialDelay = 400;
             // Neuer Tresor mit offener Tür starten
             oeffnenSchliessen(true);
         }
         private void button_Click(object sender, EventArgs e)
         {
-            SoundPlayer player = new SoundPlayer();
-            player.SoundLocation = @"C:\\Windows\\Media\\ding.wav";
-            player.Play();
+            // Tastentöne
+            if (soundOn)
+            {
+                player.SoundLocation = @"C:\\Windows\\Media\\ding.wav";
+                player.Play();
+            }
             // Display vorgängig zurücksetzen wenn resetDisplayOk 'true' ist
             if (resetDisplayOk == true)
             {
@@ -122,14 +134,10 @@ namespace Tresor
             // Exception Handling für das Abfangen falscher Manipulationen
             try
             {
-                SoundPlayer player = new SoundPlayer();
-                this.eingegebenerCode = Convert.ToInt32(display.Text);
+                eingegebenerCode = Convert.ToInt32(display.Text);
                 {
                     if (codeIsSet = true && eingegebenerCode == gesetzterCode && Convert.ToInt32(display.Text) >= 1)
                     {
-                        // Sound bei erfolgreicher Öffnung
-                        player.SoundLocation = @"C:\\Windows\\Media\\tada.wav";
-                        player.Play();
                         // Code Korrekt
                         resetForm();
                     }
@@ -139,8 +147,11 @@ namespace Tresor
                         if (fehlversuche > 1)
                         {
                             // Sound bei 3 Fehlversuchen
-                            player.SoundLocation = @"C:\\Windows\\Media\\ir_end.wav";
-                            player.Play();
+                            if (soundOn)
+                            {
+                                player.SoundLocation = @"C:\\Windows\\Media\\ir_end.wav";
+                                player.Play();
+                            }
                             // Pop-up wenn Alarm losgeht
                             MessageBox.Show("Zu viele Versuche. Der Tresor wird geschlossen", "ALARM", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             /*int i = 10;
@@ -155,10 +166,14 @@ namespace Tresor
                             //myTimer.Tick += new EventHandler(myTimer_Tick);
 
                             // Tresor nach 3 Fehlerversuchen schliessen, andere Instanzen bleiben geöffnet
-                            this.Close();
+                            Close();
                         }
-                        player.SoundLocation = @"C:\\Windows\\Media\\chord.wav";
-                        player.Play();
+                        else
+                            if (soundOn)
+                        {
+                            player.SoundLocation = @"C:\\Windows\\Media\\chord.wav";
+                            player.Play();
+                        }
                         display.Text = "Code Inkorrekt";
                         codeIsSet = true;
                         resetDisplayOk = true;
@@ -179,16 +194,16 @@ namespace Tresor
         }
         private void Hilfe_Click(object sender, EventArgs e)
         {
-            if (this.codeIsSet == true)
+            if (codeIsSet == true)
             {
                 // Wenn ein Code gesetzt wurde, diesen anzeigen
                 display.Text = Convert.ToString("Code ist: " + gesetzterCode);
-                this.resetDisplayOk = true;
+                resetDisplayOk = true;
             }
             else
                 // Ausgeben wenn noch kein Code gesetzt wurde
                 display.Text = "Kein Code";
-            this.resetDisplayOk = true;
+            resetDisplayOk = true;
         }
         private void autoOpen_CheckedChanged(object sender, EventArgs e)
         {
@@ -198,6 +213,15 @@ namespace Tresor
             }
             else
                 auto = false;
+        }
+        private void soundCB_CheckedChanged(object sender, EventArgs e)
+        {
+            if (soundCB.Checked)
+            {
+                soundOn = true;
+            }
+            else
+                soundOn = false;
         }
     }
 }

@@ -49,6 +49,7 @@
             this.schliessfach = new System.Windows.Forms.Panel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.autoOpen = new System.Windows.Forms.CheckBox();
+            this.soundCB = new System.Windows.Forms.CheckBox();
             this.zahlenBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,21 +72,18 @@
             this.zahlenBox.Controls.Add(this.button1);
             this.zahlenBox.Font = new System.Drawing.Font("Consolas", 12F);
             this.zahlenBox.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.zahlenBox.Location = new System.Drawing.Point(656, 29);
-            this.zahlenBox.Margin = new System.Windows.Forms.Padding(7);
+            this.zahlenBox.Location = new System.Drawing.Point(281, 13);
             this.zahlenBox.Name = "zahlenBox";
-            this.zahlenBox.Padding = new System.Windows.Forms.Padding(7);
-            this.zahlenBox.Size = new System.Drawing.Size(350, 578);
+            this.zahlenBox.Size = new System.Drawing.Size(150, 259);
             this.zahlenBox.TabIndex = 0;
             this.zahlenBox.TabStop = false;
             this.zahlenBox.Text = "Tresor c2018+";
             // 
             // hilfe
             // 
-            this.hilfe.Location = new System.Drawing.Point(14, 364);
-            this.hilfe.Margin = new System.Windows.Forms.Padding(7);
+            this.hilfe.Location = new System.Drawing.Point(6, 163);
             this.hilfe.Name = "hilfe";
-            this.hilfe.Size = new System.Drawing.Size(93, 89);
+            this.hilfe.Size = new System.Drawing.Size(40, 40);
             this.hilfe.TabIndex = 25;
             this.hilfe.Text = "?";
             this.hilfe.UseVisualStyleBackColor = true;
@@ -94,10 +92,9 @@
             // open
             // 
             this.open.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.open.Location = new System.Drawing.Point(166, 466);
-            this.open.Margin = new System.Windows.Forms.Padding(7);
+            this.open.Location = new System.Drawing.Point(71, 209);
             this.open.Name = "open";
-            this.open.Size = new System.Drawing.Size(156, 89);
+            this.open.Size = new System.Drawing.Size(67, 40);
             this.open.TabIndex = 24;
             this.open.Text = "OPEN";
             this.open.UseVisualStyleBackColor = true;
@@ -106,10 +103,9 @@
             // set
             // 
             this.set.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.set.Location = new System.Drawing.Point(14, 466);
-            this.set.Margin = new System.Windows.Forms.Padding(7);
+            this.set.Location = new System.Drawing.Point(6, 209);
             this.set.Name = "set";
-            this.set.Size = new System.Drawing.Size(156, 89);
+            this.set.Size = new System.Drawing.Size(67, 40);
             this.set.TabIndex = 23;
             this.set.Text = "SET";
             this.set.UseVisualStyleBackColor = true;
@@ -118,10 +114,9 @@
             // button10
             // 
             this.button10.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button10.Location = new System.Drawing.Point(121, 364);
-            this.button10.Margin = new System.Windows.Forms.Padding(7);
+            this.button10.Location = new System.Drawing.Point(52, 163);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(93, 89);
+            this.button10.Size = new System.Drawing.Size(40, 40);
             this.button10.TabIndex = 20;
             this.button10.Text = "0";
             this.button10.UseVisualStyleBackColor = true;
@@ -130,10 +125,9 @@
             // c
             // 
             this.c.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.c.Location = new System.Drawing.Point(229, 364);
-            this.c.Margin = new System.Windows.Forms.Padding(7);
+            this.c.Location = new System.Drawing.Point(98, 163);
             this.c.Name = "c";
-            this.c.Size = new System.Drawing.Size(93, 89);
+            this.c.Size = new System.Drawing.Size(40, 40);
             this.c.TabIndex = 21;
             this.c.Text = "C";
             this.c.UseVisualStyleBackColor = true;
@@ -142,10 +136,9 @@
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(229, 261);
-            this.button7.Margin = new System.Windows.Forms.Padding(7);
+            this.button7.Location = new System.Drawing.Point(98, 117);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(93, 89);
+            this.button7.Size = new System.Drawing.Size(40, 40);
             this.button7.TabIndex = 19;
             this.button7.Text = "9";
             this.button7.UseVisualStyleBackColor = true;
@@ -154,10 +147,9 @@
             // button8
             // 
             this.button8.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.Location = new System.Drawing.Point(121, 261);
-            this.button8.Margin = new System.Windows.Forms.Padding(7);
+            this.button8.Location = new System.Drawing.Point(52, 117);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(93, 89);
+            this.button8.Size = new System.Drawing.Size(40, 40);
             this.button8.TabIndex = 18;
             this.button8.Text = "8";
             this.button8.UseVisualStyleBackColor = true;
@@ -166,10 +158,9 @@
             // button9
             // 
             this.button9.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.Location = new System.Drawing.Point(14, 261);
-            this.button9.Margin = new System.Windows.Forms.Padding(7);
+            this.button9.Location = new System.Drawing.Point(6, 117);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(93, 89);
+            this.button9.Size = new System.Drawing.Size(40, 40);
             this.button9.TabIndex = 17;
             this.button9.Text = "7";
             this.button9.UseVisualStyleBackColor = true;
@@ -178,10 +169,9 @@
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(229, 158);
-            this.button4.Margin = new System.Windows.Forms.Padding(7);
+            this.button4.Location = new System.Drawing.Point(98, 71);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(93, 89);
+            this.button4.Size = new System.Drawing.Size(40, 40);
             this.button4.TabIndex = 16;
             this.button4.Text = "6";
             this.button4.UseVisualStyleBackColor = true;
@@ -190,10 +180,9 @@
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(121, 158);
-            this.button5.Margin = new System.Windows.Forms.Padding(7);
+            this.button5.Location = new System.Drawing.Point(52, 71);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(93, 89);
+            this.button5.Size = new System.Drawing.Size(40, 40);
             this.button5.TabIndex = 15;
             this.button5.Text = "5";
             this.button5.UseVisualStyleBackColor = true;
@@ -202,10 +191,9 @@
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(14, 158);
-            this.button6.Margin = new System.Windows.Forms.Padding(7);
+            this.button6.Location = new System.Drawing.Point(6, 71);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(93, 89);
+            this.button6.Size = new System.Drawing.Size(40, 40);
             this.button6.TabIndex = 14;
             this.button6.Text = "4";
             this.button6.UseVisualStyleBackColor = true;
@@ -214,10 +202,9 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(229, 56);
-            this.button3.Margin = new System.Windows.Forms.Padding(7);
+            this.button3.Location = new System.Drawing.Point(98, 25);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(93, 89);
+            this.button3.Size = new System.Drawing.Size(40, 40);
             this.button3.TabIndex = 13;
             this.button3.Text = "3";
             this.button3.UseVisualStyleBackColor = true;
@@ -226,10 +213,9 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(121, 56);
-            this.button2.Margin = new System.Windows.Forms.Padding(7);
+            this.button2.Location = new System.Drawing.Point(52, 25);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(93, 89);
+            this.button2.Size = new System.Drawing.Size(40, 40);
             this.button2.TabIndex = 12;
             this.button2.Text = "2";
             this.button2.UseVisualStyleBackColor = true;
@@ -238,10 +224,9 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(14, 56);
-            this.button1.Margin = new System.Windows.Forms.Padding(7);
+            this.button1.Location = new System.Drawing.Point(6, 25);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(93, 89);
+            this.button1.Size = new System.Drawing.Size(40, 40);
             this.button1.TabIndex = 11;
             this.button1.Text = "1";
             this.button1.UseVisualStyleBackColor = true;
@@ -250,11 +235,10 @@
             // display
             // 
             this.display.Font = new System.Drawing.Font("Consolas", 12F);
-            this.display.Location = new System.Drawing.Point(656, 620);
-            this.display.Margin = new System.Windows.Forms.Padding(7);
+            this.display.Location = new System.Drawing.Point(281, 278);
             this.display.Name = "display";
             this.display.ReadOnly = true;
-            this.display.Size = new System.Drawing.Size(345, 50);
+            this.display.Size = new System.Drawing.Size(150, 26);
             this.display.TabIndex = 1;
             this.display.Text = "0000";
             this.display.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -262,35 +246,46 @@
             // schliessfach
             // 
             this.schliessfach.AllowDrop = true;
-            this.schliessfach.Location = new System.Drawing.Point(26, 85);
-            this.schliessfach.Margin = new System.Windows.Forms.Padding(7);
+            this.schliessfach.Location = new System.Drawing.Point(11, 38);
             this.schliessfach.Name = "schliessfach";
-            this.schliessfach.Size = new System.Drawing.Size(616, 591);
+            this.schliessfach.Size = new System.Drawing.Size(264, 265);
             this.schliessfach.TabIndex = 2;
             // 
             // autoOpen
             // 
             this.autoOpen.AutoSize = true;
-            this.autoOpen.Location = new System.Drawing.Point(26, 29);
+            this.autoOpen.Location = new System.Drawing.Point(11, 13);
+            this.autoOpen.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.autoOpen.Name = "autoOpen";
-            this.autoOpen.Size = new System.Drawing.Size(209, 33);
+            this.autoOpen.Size = new System.Drawing.Size(100, 17);
             this.autoOpen.TabIndex = 3;
             this.autoOpen.Text = "Autom. Öffnung";
             this.autoOpen.UseVisualStyleBackColor = true;
             this.autoOpen.CheckedChanged += new System.EventHandler(this.autoOpen_CheckedChanged);
             // 
+            // soundCB
+            // 
+            this.soundCB.AutoSize = true;
+            this.soundCB.Location = new System.Drawing.Point(115, 13);
+            this.soundCB.Name = "soundCB";
+            this.soundCB.Size = new System.Drawing.Size(62, 17);
+            this.soundCB.TabIndex = 4;
+            this.soundCB.Text = "Sounds";
+            this.soundCB.UseVisualStyleBackColor = true;
+            this.soundCB.CheckedChanged += new System.EventHandler(this.soundCB_CheckedChanged);
+            // 
             // Tresor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.ClientSize = new System.Drawing.Size(1022, 692);
+            this.ClientSize = new System.Drawing.Size(438, 310);
+            this.Controls.Add(this.soundCB);
             this.Controls.Add(this.autoOpen);
             this.Controls.Add(this.schliessfach);
             this.Controls.Add(this.display);
             this.Controls.Add(this.zahlenBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(7);
             this.MaximizeBox = false;
             this.Name = "Tresor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -322,5 +317,6 @@
         private System.Windows.Forms.Button hilfe;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.CheckBox autoOpen;
+        private System.Windows.Forms.CheckBox soundCB;
     }
 }
