@@ -32,10 +32,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Tresor));
             this.zahlenBox = new System.Windows.Forms.GroupBox();
             this.hilfe = new System.Windows.Forms.Button();
-            this.open = new System.Windows.Forms.Button();
-            this.set = new System.Windows.Forms.Button();
+            this.oeffnen = new System.Windows.Forms.Button();
+            this.setzen = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
-            this.c = new System.Windows.Forms.Button();
+            this.zuruecksetzen = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
@@ -45,11 +45,11 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.display = new System.Windows.Forms.TextBox();
+            this.anzeige = new System.Windows.Forms.TextBox();
             this.schliessfach = new System.Windows.Forms.Panel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.autoOpen = new System.Windows.Forms.CheckBox();
-            this.soundCB = new System.Windows.Forms.CheckBox();
+            this.AutoOeffnungCheckbox = new System.Windows.Forms.CheckBox();
+            this.SoundsCheckbox = new System.Windows.Forms.CheckBox();
             this.zahlenBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,10 +57,10 @@
             // 
             this.zahlenBox.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.zahlenBox.Controls.Add(this.hilfe);
-            this.zahlenBox.Controls.Add(this.open);
-            this.zahlenBox.Controls.Add(this.set);
+            this.zahlenBox.Controls.Add(this.oeffnen);
+            this.zahlenBox.Controls.Add(this.setzen);
             this.zahlenBox.Controls.Add(this.button10);
-            this.zahlenBox.Controls.Add(this.c);
+            this.zahlenBox.Controls.Add(this.zuruecksetzen);
             this.zahlenBox.Controls.Add(this.button7);
             this.zahlenBox.Controls.Add(this.button8);
             this.zahlenBox.Controls.Add(this.button9);
@@ -89,27 +89,27 @@
             this.hilfe.UseVisualStyleBackColor = true;
             this.hilfe.Click += new System.EventHandler(this.Hilfe_Click);
             // 
-            // open
+            // oeffnen
             // 
-            this.open.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.open.Location = new System.Drawing.Point(71, 209);
-            this.open.Name = "open";
-            this.open.Size = new System.Drawing.Size(67, 40);
-            this.open.TabIndex = 24;
-            this.open.Text = "OPEN";
-            this.open.UseVisualStyleBackColor = true;
-            this.open.Click += new System.EventHandler(this.open_Click);
+            this.oeffnen.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.oeffnen.Location = new System.Drawing.Point(71, 209);
+            this.oeffnen.Name = "oeffnen";
+            this.oeffnen.Size = new System.Drawing.Size(67, 40);
+            this.oeffnen.TabIndex = 24;
+            this.oeffnen.Text = "OEFFNEN";
+            this.oeffnen.UseVisualStyleBackColor = true;
+            this.oeffnen.Click += new System.EventHandler(this.oeffnen_Click);
             // 
-            // set
+            // setzen
             // 
-            this.set.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.set.Location = new System.Drawing.Point(6, 209);
-            this.set.Name = "set";
-            this.set.Size = new System.Drawing.Size(67, 40);
-            this.set.TabIndex = 23;
-            this.set.Text = "SET";
-            this.set.UseVisualStyleBackColor = true;
-            this.set.Click += new System.EventHandler(this.setOrC_Click);
+            this.setzen.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.setzen.Location = new System.Drawing.Point(6, 209);
+            this.setzen.Name = "setzen";
+            this.setzen.Size = new System.Drawing.Size(67, 40);
+            this.setzen.TabIndex = 23;
+            this.setzen.Text = "EINGABE";
+            this.setzen.UseVisualStyleBackColor = true;
+            this.setzen.Click += new System.EventHandler(this.setOrC_Click);
             // 
             // button10
             // 
@@ -120,18 +120,18 @@
             this.button10.TabIndex = 20;
             this.button10.Text = "0";
             this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button_Click);
+            this.button10.Click += new System.EventHandler(this.Knopf_Click);
             // 
-            // c
+            // zuruecksetzen
             // 
-            this.c.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.c.Location = new System.Drawing.Point(98, 163);
-            this.c.Name = "c";
-            this.c.Size = new System.Drawing.Size(40, 40);
-            this.c.TabIndex = 21;
-            this.c.Text = "C";
-            this.c.UseVisualStyleBackColor = true;
-            this.c.Click += new System.EventHandler(this.setOrC_Click);
+            this.zuruecksetzen.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.zuruecksetzen.Location = new System.Drawing.Point(98, 163);
+            this.zuruecksetzen.Name = "zuruecksetzen";
+            this.zuruecksetzen.Size = new System.Drawing.Size(40, 40);
+            this.zuruecksetzen.TabIndex = 21;
+            this.zuruecksetzen.Text = "C";
+            this.zuruecksetzen.UseVisualStyleBackColor = true;
+            this.zuruecksetzen.Click += new System.EventHandler(this.setOrC_Click);
             // 
             // button7
             // 
@@ -142,7 +142,7 @@
             this.button7.TabIndex = 19;
             this.button7.Text = "9";
             this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button_Click);
+            this.button7.Click += new System.EventHandler(this.Knopf_Click);
             // 
             // button8
             // 
@@ -153,7 +153,7 @@
             this.button8.TabIndex = 18;
             this.button8.Text = "8";
             this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button_Click);
+            this.button8.Click += new System.EventHandler(this.Knopf_Click);
             // 
             // button9
             // 
@@ -164,7 +164,7 @@
             this.button9.TabIndex = 17;
             this.button9.Text = "7";
             this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button_Click);
+            this.button9.Click += new System.EventHandler(this.Knopf_Click);
             // 
             // button4
             // 
@@ -175,7 +175,7 @@
             this.button4.TabIndex = 16;
             this.button4.Text = "6";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button_Click);
+            this.button4.Click += new System.EventHandler(this.Knopf_Click);
             // 
             // button5
             // 
@@ -186,7 +186,7 @@
             this.button5.TabIndex = 15;
             this.button5.Text = "5";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button_Click);
+            this.button5.Click += new System.EventHandler(this.Knopf_Click);
             // 
             // button6
             // 
@@ -197,7 +197,7 @@
             this.button6.TabIndex = 14;
             this.button6.Text = "4";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button_Click);
+            this.button6.Click += new System.EventHandler(this.Knopf_Click);
             // 
             // button3
             // 
@@ -208,7 +208,7 @@
             this.button3.TabIndex = 13;
             this.button3.Text = "3";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button_Click);
+            this.button3.Click += new System.EventHandler(this.Knopf_Click);
             // 
             // button2
             // 
@@ -219,7 +219,7 @@
             this.button2.TabIndex = 12;
             this.button2.Text = "2";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button_Click);
+            this.button2.Click += new System.EventHandler(this.Knopf_Click);
             // 
             // button1
             // 
@@ -230,18 +230,18 @@
             this.button1.TabIndex = 11;
             this.button1.Text = "1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button_Click);
+            this.button1.Click += new System.EventHandler(this.Knopf_Click);
             // 
-            // display
+            // anzeige
             // 
-            this.display.Font = new System.Drawing.Font("Consolas", 12F);
-            this.display.Location = new System.Drawing.Point(281, 278);
-            this.display.Name = "display";
-            this.display.ReadOnly = true;
-            this.display.Size = new System.Drawing.Size(150, 26);
-            this.display.TabIndex = 1;
-            this.display.Text = "0000";
-            this.display.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.anzeige.Font = new System.Drawing.Font("Consolas", 12F);
+            this.anzeige.Location = new System.Drawing.Point(281, 278);
+            this.anzeige.Name = "anzeige";
+            this.anzeige.ReadOnly = true;
+            this.anzeige.Size = new System.Drawing.Size(150, 26);
+            this.anzeige.TabIndex = 1;
+            this.anzeige.Text = "0000";
+            this.anzeige.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // schliessfach
             // 
@@ -251,28 +251,28 @@
             this.schliessfach.Size = new System.Drawing.Size(264, 265);
             this.schliessfach.TabIndex = 2;
             // 
-            // autoOpen
+            // AutoOeffnungCheckbox
             // 
-            this.autoOpen.AutoSize = true;
-            this.autoOpen.Location = new System.Drawing.Point(11, 13);
-            this.autoOpen.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
-            this.autoOpen.Name = "autoOpen";
-            this.autoOpen.Size = new System.Drawing.Size(100, 17);
-            this.autoOpen.TabIndex = 3;
-            this.autoOpen.Text = "Autom. Öffnung";
-            this.autoOpen.UseVisualStyleBackColor = true;
-            this.autoOpen.CheckedChanged += new System.EventHandler(this.autoOpen_CheckedChanged);
+            this.AutoOeffnungCheckbox.AutoSize = true;
+            this.AutoOeffnungCheckbox.Location = new System.Drawing.Point(11, 13);
+            this.AutoOeffnungCheckbox.Margin = new System.Windows.Forms.Padding(1);
+            this.AutoOeffnungCheckbox.Name = "AutoOeffnungCheckbox";
+            this.AutoOeffnungCheckbox.Size = new System.Drawing.Size(100, 17);
+            this.AutoOeffnungCheckbox.TabIndex = 3;
+            this.AutoOeffnungCheckbox.Text = "Autom. Öffnung";
+            this.AutoOeffnungCheckbox.UseVisualStyleBackColor = true;
+            this.AutoOeffnungCheckbox.CheckedChanged += new System.EventHandler(this.AutoOeffnen_CheckedChanged);
             // 
-            // soundCB
+            // SoundsCheckbox
             // 
-            this.soundCB.AutoSize = true;
-            this.soundCB.Location = new System.Drawing.Point(115, 13);
-            this.soundCB.Name = "soundCB";
-            this.soundCB.Size = new System.Drawing.Size(62, 17);
-            this.soundCB.TabIndex = 4;
-            this.soundCB.Text = "Sounds";
-            this.soundCB.UseVisualStyleBackColor = true;
-            this.soundCB.CheckedChanged += new System.EventHandler(this.soundCB_CheckedChanged);
+            this.SoundsCheckbox.AutoSize = true;
+            this.SoundsCheckbox.Location = new System.Drawing.Point(135, 13);
+            this.SoundsCheckbox.Name = "SoundsCheckbox";
+            this.SoundsCheckbox.Size = new System.Drawing.Size(62, 17);
+            this.SoundsCheckbox.TabIndex = 4;
+            this.SoundsCheckbox.Text = "Sounds";
+            this.SoundsCheckbox.UseVisualStyleBackColor = true;
+            this.SoundsCheckbox.CheckedChanged += new System.EventHandler(this.Sounds_CheckedChanged);
             // 
             // Tresor
             // 
@@ -280,10 +280,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.ClientSize = new System.Drawing.Size(438, 310);
-            this.Controls.Add(this.soundCB);
-            this.Controls.Add(this.autoOpen);
+            this.Controls.Add(this.SoundsCheckbox);
+            this.Controls.Add(this.AutoOeffnungCheckbox);
             this.Controls.Add(this.schliessfach);
-            this.Controls.Add(this.display);
+            this.Controls.Add(this.anzeige);
             this.Controls.Add(this.zahlenBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -299,7 +299,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox zahlenBox;
-        private System.Windows.Forms.Button c;
+        private System.Windows.Forms.Button zuruecksetzen;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
@@ -310,13 +310,13 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox display;
+        private System.Windows.Forms.TextBox anzeige;
         private System.Windows.Forms.Panel schliessfach;
-        private System.Windows.Forms.Button open;
-        private System.Windows.Forms.Button set;
+        private System.Windows.Forms.Button oeffnen;
+        private System.Windows.Forms.Button setzen;
         private System.Windows.Forms.Button hilfe;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.CheckBox autoOpen;
-        private System.Windows.Forms.CheckBox soundCB;
+        private System.Windows.Forms.CheckBox AutoOeffnungCheckbox;
+        private System.Windows.Forms.CheckBox SoundsCheckbox;
     }
 }

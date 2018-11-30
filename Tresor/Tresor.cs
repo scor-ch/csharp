@@ -3,124 +3,60 @@ using System.Drawing;
 using System.Media;
 using System.Windows.Forms;
 
-//Todo: dragndrop, visible.enabled wenn open
-//Todo: alarm counter im display
-
 namespace Tresor
 {
     public partial class Tresor : Form
     {
+        // SoundPlayer Objekt instanzieren
         SoundPlayer player = new SoundPlayer();
         // Variable für den Code der mit SET gesetzt wurde und zur Öffnung der Tresortüre benötigt wird
         int gesetzterCode;
         // Variable für den vom Benutzer "versuchten" Code um die Türe zu öffnen
         int eingegebenerCode;
         // Variable die festhält, ob ein Code gesetzt wurde und damit aktiv ist
-        bool codeIsSet = false;
+        bool codeGesetzt = false;
         // Variable die festhält, ob das Display zurückgesetzt werden darf oder nicht
-        bool resetDisplayOk = true;
-        // Zähler Versuche
+        bool zuruecksetzenDisplay = true;
+        // Variable um die Anzahl Versuche festzuhalten
         int fehlversuche = 0;
         // Flag um die autom. Türöffnung zu aktivieren/deaktivieren
-        bool auto;
+        bool autoOeffnung;
         // Flag um Soundeffekte zu aktivieren/deaktivieren
-        bool soundOn;
+        bool soundsAn;
+
         // Methode um Instanz neu laden nachdem die Türe (autom.) geöffnet wurde
-        private void resetForm()
-        {
-            // Sound bei erfolgreicher Öffnung und aktivierten Soundeffekten
-            if (soundOn)
-            {
-                player.SoundLocation = @"C:\\Windows\\Media\\tada.wav";
-                player.Play();
-            }
-            display.Text = "Code Korrekt";
-            codeIsSet = false;
-            resetDisplayOk = true;
-            oeffnenSchliessen(true);
-            fehlversuche = default(int);
-        }
         public Tresor()
         {
             InitializeComponent();
             // Tooltip zum "?" Knopf anzeigen
-            ToolTip helpToolTip = new ToolTip();
-            helpToolTip.SetToolTip(hilfe, "Aktueller Code anzeigen");
-            helpToolTip.InitialDelay = 400;
-            // Neuer Tresor mit offener Tür starten
+            ToolTip hilfeToolTip = new ToolTip();
+            hilfeToolTip.SetToolTip(hilfe, "Aktuellen Code anzeigen");
+            hilfeToolTip.InitialDelay = 400;
+            // Den neuen Tresor mit offener Tür starten
             oeffnenSchliessen(true);
+
         }
-        private void button_Click(object sender, EventArgs e)
+        // Methode um das Formular (den Tresor) zurückzusetzen
+        private void ZuruecksetzenFormular()
         {
-            // Tastentöne
-            if (soundOn)
+            // Sound bei erfolgreicher Öffnung und aktivierten Soundeffekten
+            if (soundsAn)
             {
-                player.SoundLocation = @"C:\\Windows\\Media\\ding.wav";
+                player.SoundLocation = @"C:\\Windows\\Media\\tada.wav";
                 player.Play();
             }
-            // Display vorgängig zurücksetzen wenn resetDisplayOk 'true' ist
-            if (resetDisplayOk == true)
-            {
-                display.Clear();
-            }
-            // Knopf-Text (Zahl) erfassen und für die Anzeige im Display verwenden
-            Button b = (Button)sender;
-            display.Text = display.Text + b.Text;
-            // Display nicht mehr zurücksetzen damit Zahlen aneinandergereiht werden können
-            resetDisplayOk = false;
-            // Display nicht mehr zurücksetzen damit Zahlen aneinandergereiht werden können
-            if (auto && display.Text == Convert.ToString(gesetzterCode))
-            {
-                resetForm();
-            }
+            anzeige.Text = "Code Korrekt";
+            codeGesetzt = false;
+            zuruecksetzenDisplay = true;
+            oeffnenSchliessen(true);
+            fehlversuche = default(int);
+            ControlBox = false;
         }
-        // Event für die Knöpfe "SET" und "C"
-        private void setOrC_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Button b = (Button)sender;
-                // Code nur setzen, wenn der Wert grösser als 0 ist und noch kein andere Code gesetzt wurde
-                if (b.Text == "SET" && Convert.ToInt32(display.Text) >= 1 && codeIsSet == false)
-                {
-                    gesetzterCode = Convert.ToInt32(display.Text);
-                    display.Text = "Code gesetzt";
-                    codeIsSet = true;
-                    resetDisplayOk = true;
-                    // Tresortüre schliessen (rot)
-                    oeffnenSchliessen(false);
-                }
-                // Nachricht ausgeben, wenn ein Code mit "0/00/000" gesetzt werden soll
-                else if (b.Text != "C" && Convert.ToInt32(display.Text) <= 0)
-                {
-                    display.Text = "Ungültig";
-                    resetDisplayOk = true;
-                }
-                else if (b.Text == "SET" && codeIsSet == true)
-                {
-                    display.Text = "Alter Code aktiv";
-                    resetDisplayOk = true;
-                }
-                else if (b.Text == "C")
-                {
-                    // Eingegebene Zahlen zurücksetzen
-                    eingegebenerCode = default(int);
-                    // Display auf 0000 zurücksetzen
-                    display.Clear();
-                    display.Text = "0000";
-                    resetDisplayOk = true;
-                }
-            }
-            // Versucht einen string zu "SETTEN" abfangen
-            catch (FormatException)
-            {
-                display.Text = "Nicht erlaubt";
-            }
-        }
+
+        // Methode um die Tresortüre zu öffnen/schliessen
         private void oeffnenSchliessen(bool bewegen)
         {
-            // Panel aktivieren / deaktivieren
-            //schliessfach.Enabled = bewegen;
+            // Panel Farben grün = Tresor offen, rot = Tresor zu
             if (bewegen)
             {
                 schliessfach.BackColor = Color.DarkGreen;
@@ -128,18 +64,93 @@ namespace Tresor
             else
                 schliessfach.BackColor = Color.DarkRed;
         }
-
-        private void open_Click(object sender, EventArgs e)
+        // Click-Event Handler für alle Zahlen von 0-9
+        private void Knopf_Click(object sender, EventArgs e)
         {
-            // Exception Handling für das Abfangen falscher Manipulationen
+            // Tastentöne
+            if (soundsAn)
+            {
+                player.SoundLocation = @"C:\\Windows\\Media\\ding.wav";
+                player.Play();
+            }
+            // Display vorgängig zurücksetzen wenn zuruecksetzenDisplay 'true' ist
+            if (zuruecksetzenDisplay == true)
+            {
+                anzeige.Clear();
+            }
+            // Knopf-Text (Zahl) erfassen und für die Anzeige im Display verwenden
+            Button b = (Button)sender;
+            anzeige.Text = anzeige.Text + b.Text;
+            // Display nicht mehr zurücksetzen damit Zahlen aneinandergereiht werden können
+            zuruecksetzenDisplay = false;
+            // Überprüfung ob - bei aktivierter Autom. Öffnung - der eingegebene Code mit dem gesetzten Code übereinstimmt
+            // Wenn zutreffend, entsprechend die Zurücksetzung des Formulars auslösen
+            if (autoOeffnung && anzeige.Text == Convert.ToString(gesetzterCode))
+            {
+                ZuruecksetzenFormular();
+            }
+        }
+        // Click-Event Handler für die Knöpfe "EINGABE" und "C"
+        private void setOrC_Click(object sender, EventArgs e)
+        {
+            // Beginn Ausnahmebehandlung
             try
             {
-                eingegebenerCode = Convert.ToInt32(display.Text);
+                Button b = (Button)sender;
+                // Code nur setzen, wenn der Wert grösser als 0 ist und noch kein andere Code gesetzt wurde
+                if (b.Text == "EINGABE" && Convert.ToInt32(anzeige.Text) >= 1 && codeGesetzt == false)
                 {
-                    if (codeIsSet = true && eingegebenerCode == gesetzterCode && Convert.ToInt32(display.Text) >= 1)
+                    gesetzterCode = Convert.ToInt32(anzeige.Text);
+                    anzeige.Text = "Code gesetzt";
+                    codeGesetzt = true;
+                    zuruecksetzenDisplay = true;
+                    // Tresortüre schliessen (rot)
+                    oeffnenSchliessen(false);
+                    ControlBox = true;
+                }
+                // Nachricht ausgeben, wenn ein ungültiger Code mit "0/00/000" gesetzt wird
+                else if (b.Text != "C" && Convert.ToInt32(anzeige.Text) <= 0)
+                {
+                    anzeige.Text = "Ungültig";
+                    zuruecksetzenDisplay = true;
+                }
+                // Überprüfen, ob schon ein Code gesetzt wurde und entsprechende Nachricht ausgeben
+                else if (b.Text == "EINGABE" && codeGesetzt == true)
+                {
+                    anzeige.Text = "Alter Code aktiv";
+                    zuruecksetzenDisplay = true;
+                }
+                // Wenn "C" betätigt wird, soll das Display auf 0000 zurückgesetzt werden
+                else if (b.Text == "C")
+                {
+                    // Eingegebene Zahlen zurücksetzen
+                    eingegebenerCode = default(int);
+                    // Display auf 0000 zurücksetzen
+                    anzeige.Clear();
+                    anzeige.Text = "0000";
+                    zuruecksetzenDisplay = true;
+                }
+            }
+            // Versuch einen string zu "SETZEN" abfangen
+            catch (FormatException)
+            {
+                anzeige.Text = "Nicht erlaubt";
+            }
+        }
+
+        // Event-Handler für den OEFFNEN Knopf
+        private void oeffnen_Click(object sender, EventArgs e)
+        {
+            // Ausnahmebehandlung für das Abfangen falscher Manipulationen
+            try
+            {
+                eingegebenerCode = Convert.ToInt32(anzeige.Text);
+                {
+                    // Prüfung ob Code übereinstimmt
+                    if (codeGesetzt = true && eingegebenerCode == gesetzterCode && Convert.ToInt32(anzeige.Text) >= 1)
                     {
-                        // Code Korrekt
-                        resetForm();
+                        // Code Korrekt - Formular zurücksetzen
+                        ZuruecksetzenFormular();
                     }
                     else
                     {
@@ -147,36 +158,27 @@ namespace Tresor
                         if (fehlversuche > 1)
                         {
                             // Sound bei 3 Fehlversuchen
-                            if (soundOn)
+                            if (soundsAn)
                             {
                                 player.SoundLocation = @"C:\\Windows\\Media\\ir_end.wav";
                                 player.Play();
                             }
                             // Pop-up wenn Alarm losgeht
                             MessageBox.Show("Zu viele Versuche. Der Tresor wird geschlossen", "ALARM", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            /*int i = 10;
-                            do
-                            {
-                                display.Clear();
-                                display.Text = display.Text + i;
-                                System.Threading.Thread.Sleep(100);
-                                i--;
-                            } while (i >= 0);*/
-                            Timer myTimer = new Timer();
-                            //myTimer.Tick += new EventHandler(myTimer_Tick);
-
                             // Tresor nach 3 Fehlerversuchen schliessen, andere Instanzen bleiben geöffnet
                             Close();
                         }
+                        // Sound und Nachricht ausgeben wenn der eingegebene Code nicht korrekt ist
+                        // Anzahl Fehlversuche werden hochgezählt
                         else
-                            if (soundOn)
+                            if (soundsAn)
                         {
                             player.SoundLocation = @"C:\\Windows\\Media\\chord.wav";
                             player.Play();
                         }
-                        display.Text = "Code Inkorrekt";
-                        codeIsSet = true;
-                        resetDisplayOk = true;
+                        anzeige.Text = "Code Inkorrekt";
+                        codeGesetzt = true;
+                        zuruecksetzenDisplay = true;
                         fehlversuche++;
                     }
                 }
@@ -184,44 +186,47 @@ namespace Tresor
             // Benutzerfreundliche Meldung bei falscher Eingabe
             catch (FormatException)
             {
-                display.Text = "Falsches Format";
+                anzeige.Text = "Falsches Format";
             }
-            // Generelle benutzerfreundliche Ausgabe anderer Exceptions als Popup
+            // Generelle, benutzerfreundliche Ausgabe anderer Ausnahmen in Form einer Popupmeldung
             catch (Exception exception)
             {
-                MessageBox.Show(display.Text = exception.GetType() + ": " + exception.Message);
+                MessageBox.Show(anzeige.Text = exception.GetType() + ": " + exception.Message);
             }
         }
+
+        // Click Event-Handler für den Hilfe-Knopf
         private void Hilfe_Click(object sender, EventArgs e)
         {
-            if (codeIsSet == true)
+            if (codeGesetzt == true)
             {
-                // Wenn ein Code gesetzt wurde, diesen anzeigen
-                display.Text = Convert.ToString("Code ist: " + gesetzterCode);
-                resetDisplayOk = true;
+                // Wenn ein Code gesetzt wurde, diesen im Display anzeigen
+                anzeige.Text = Convert.ToString("Code ist: " + gesetzterCode);
+                zuruecksetzenDisplay = true;
             }
             else
-                // Ausgeben wenn noch kein Code gesetzt wurde
-                display.Text = "Kein Code";
-            resetDisplayOk = true;
+                // Im Display ausgeben, wenn noch kein Code gesetzt wurde
+                anzeige.Text = "Kein Code";
+            zuruecksetzenDisplay = true;
         }
-        private void autoOpen_CheckedChanged(object sender, EventArgs e)
+        // Wenn die Autom. Öffnung Checkbox manipuliert wird wird, wird auch das Flag entsprechend gesetzt und aktiviert/deaktiviert damit die Funktion
+        private void AutoOeffnen_CheckedChanged(object sender, EventArgs e)
         {
-            if (autoOpen.Checked)
+            if (AutoOeffnungCheckbox.Checked)
             {
-                auto = true;
+                autoOeffnung = true;
             }
             else
-                auto = false;
-        }
-        private void soundCB_CheckedChanged(object sender, EventArgs e)
+                autoOeffnung = false;
+        }// Wenn die Sounds Checkbox manipuliert wird wird, wird auch das Flag entsprechend gesetzt und aktiviert/deaktiviert damit die Funktion
+        private void Sounds_CheckedChanged(object sender, EventArgs e)
         {
-            if (soundCB.Checked)
+            if (SoundsCheckbox.Checked)
             {
-                soundOn = true;
+                soundsAn = true;
             }
             else
-                soundOn = false;
+                soundsAn = false;
         }
     }
 }

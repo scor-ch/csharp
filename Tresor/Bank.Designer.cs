@@ -41,7 +41,7 @@
             this.open.TabIndex = 0;
             this.open.Text = "Schliessfach eröffnen";
             this.open.UseVisualStyleBackColor = true;
-            this.open.Click += new System.EventHandler(this.open_Click);
+            this.open.Click += new System.EventHandler(this.Open_Click);
             // 
             // verlassen
             // 
@@ -51,7 +51,7 @@
             this.verlassen.TabIndex = 1;
             this.verlassen.Text = "Bank verlassen";
             this.verlassen.UseVisualStyleBackColor = true;
-            this.verlassen.Click += new System.EventHandler(this.verlassen_Click);
+            this.verlassen.Click += new System.EventHandler(this.Verlassen_Click);
             // 
             // Bank
             // 

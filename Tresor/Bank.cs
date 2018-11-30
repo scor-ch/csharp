@@ -16,17 +16,19 @@ namespace Tresor
         {
             InitializeComponent();
             // Tooltip zum "Schliessfach eröffnen" Knopf anzeigen
-            ToolTip helpToolTip = new ToolTip();
-            helpToolTip.SetToolTip(open, "Ein oder mehrere Schliessfächer eröffnen");
-            helpToolTip.InitialDelay = 200;
+            ToolTip hilfeToolTip = new ToolTip();
+            hilfeToolTip.SetToolTip(open, "Ein oder mehrere Schliessfächer eröffnen");
+            hilfeToolTip.InitialDelay = 200;
         }
 
-        private void verlassen_Click(object sender, EventArgs e)
+        // Programm verlassen auf Knopfdruck
+        private void Verlassen_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Application.Exit();
         }
 
-        private void open_Click(object sender, EventArgs e)
+        // Neuen Tresor auf Knopfdruck erzeugen
+        private void Open_Click(object sender, EventArgs e)
         {            
             Tresor tresor = new Tresor();
             tresor.Show();
