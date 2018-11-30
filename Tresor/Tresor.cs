@@ -3,9 +3,7 @@ using System.Drawing;
 using System.Media;
 using System.Windows.Forms;
 
-//DONE: SystemPlayer (öffnen/falscher code)
 //Todo: dragndrop, visible.enabled wenn open
-//DONE: auto-open - checked zurücksetzen wenn einmal geöffnet
 //Todo: alarm counter im display
 
 namespace Tresor
@@ -46,7 +44,8 @@ namespace Tresor
         private void button_Click(object sender, EventArgs e)
         {
             SoundPlayer player = new SoundPlayer();
-            player.SoundLocation = @"C:\\Windows\\Media\\tding.wav";
+            player.SoundLocation = @"C:\\Windows\\Media\\ding.wav";
+            player.Play();
             // Display vorgängig zurücksetzen wenn resetDisplayOk 'true' ist
             if (resetDisplayOk == true)
             {
